@@ -6,6 +6,9 @@
 ### About us :
 The Mozilla Campus Club of CCEW was formed to promote the idea of open source among aspiring students and encourage them to make the most of the opportunities that come along with it.
 
+### About Repository :
+This repository was created specifically to support open-source among college students. As a result, issues might range in severity from easy to challenging.
+
 ### Instructions for Hacktoberfest:
 • You should be a student of CCEW 
 
