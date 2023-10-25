@@ -1,0 +1,70 @@
+//Solution to Issue no.16 
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct ListNode {
+    int val;
+    struct ListNode* next;
+};
+
+struct ListNode* swapPairs(struct ListNode* head) {
+    // Create a dummy node to simplify the logic
+    struct ListNode dummy;
+    dummy.next = head;
+    struct ListNode* current = &dummy;
+
+    while (current->next != NULL && current->next->next != NULL) {
+        struct ListNode* first_node = current->next;
+        struct ListNode* second_node = current->next->next;
+
+        // Swap the nodes
+        first_node->next = second_node->next;
+        second_node->next = first_node;
+        current->next = second_node;
+
+        // Move to the next pair
+        current = first_node;
+    }
+
+    return dummy.next;
+}
+
+// Function to print the linked list
+void printList(struct ListNode* head) {
+    struct ListNode* current = head;
+    while (current != NULL) {
+        printf("%d -> ", current->val);
+        current = current->next;
+    }
+    printf("NULL\n");
+}
+
+int main() {
+    // Create a sample linked list
+    struct ListNode* head = NULL;
+    for (int i = 5; i >= 1; i--) {
+        struct ListNode* newNode = (struct ListNode*)malloc(sizeof(struct ListNode));
+        newNode->val = i;
+        newNode->next = head;
+        head = newNode;
+    }
+
+    printf("Original Linked List: ");
+    printList(head);
+
+    head = swapPairs(head);
+
+    printf("Linked List after swapping pairs: ");
+    printList(head);
+
+    // Remember to free memory when you're done
+    struct ListNode* current = head;
+    while (current != NULL) {
+        struct ListNode* temp = current;
+        current = current->next;
+        free(temp);
+    }
+
+    return 0;
+}
