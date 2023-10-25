@@ -1,0 +1,22 @@
+Algorithm to convert Infix expression into Postfix expression using Stack Data Structure (JAVA)
+
+1. Start
+2. Scan the infix expression from Left to Right.
+3. Check if the character is an Operand
+	3.1 Pop the character.
+4. If the character is a Left parenthesis 
+	4.1 If the character is ‘(‘
+		4.1.1 Push the character into Stack
+	4.2 If the character is ‘)’
+		4.2.1 Pop all the characters out of stack until ‘(‘ occurs again.
+5. If the character is a regular Operator
+	5.1 If the ICP (In-Coming Priority of operator) > ISP (In-Stack Priority of operator)
+		5.1.1 Push the operator in the Stack
+	5.2 Else
+		5.2.1 Pop the operators until ICP <= ISP using while loop
+6. When all the characters in Infix Expression are processed, repeatedly pop the characters out of stack and display it.
+7. Stop
+
+
+~By ISHA BAVISKAR
+(File for issue no 85 - Write an algorithm for infix to postfix conversion using stack.)
