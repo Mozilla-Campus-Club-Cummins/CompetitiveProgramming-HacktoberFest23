@@ -1,0 +1,33 @@
+import java.util.*;
+/*
+ * Solution to Printing Fibonacci Series
+ */
+
+public class FibonacciSeries {
+
+	static int fib(int n) {
+		
+		//Base Case 
+		if (n <= 1) {
+			return n;
+		}
+		
+		//recursive call
+		return (fib(n-1) + fib(n-2));
+		
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter the number of terms for Fibonacci Series ->");
+		int n = sc.nextInt();
+		
+		//calling fibonacci function
+		for(int i=0; i<n; i++) {
+			System.out.print( fib(i) + " ");
+		}
+	}
+
+}
