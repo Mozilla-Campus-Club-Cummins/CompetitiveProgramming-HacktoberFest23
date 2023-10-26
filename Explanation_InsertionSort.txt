@@ -1,0 +1,16 @@
+SOLUTION TO ISSUE #25
+EXPLANATION OF INSERTION SORT.
+
+1.Initialization: Consider the first element of the array as sorted.
+
+2.Iteration and Comparison: Start iterating through the array, beginning with the second element.
+
+3.Comparison and Swapping: Compare the current element with the elements before it, moving backwards. If the current element is smaller than the compared element, swap them.
+
+4.Repeat Comparisons: Continue comparing the current element with the previous elements and swapping as necessary until the current element is in its correct sorted position.
+
+5.Move to the Next Element: Move to the next unsorted element in the array and repeat the comparison and swapping process until the entire array is sorted.
+
+6.Completion: After going through all elements, the array will be completely sorted.
+
+7.Efficiency: Insertion sort is efficient for small data sets or nearly sorted data but has an average and worst-case time complexity of O(n^2), where n is the number of elements in the array.
