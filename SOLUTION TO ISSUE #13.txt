@@ -1,0 +1,55 @@
+SOLUTION TO ISSUE #13
+Program to find middle element of SINGLE LINKED LIST using C Language.
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node structure
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+int main() {
+
+    struct Node* head = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* second = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* third = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* fourth = (struct Node*)malloc(sizeof(struct Node));
+
+    printf("Enter value for the first node: ");
+    scanf("%d", &head->data);
+    head->next = second;
+
+    printf("Enter value for the second node: ");
+    scanf("%d", &second->data);
+    second->next = third;
+
+    printf("Enter value for the third node: ");
+    scanf("%d", &third->data);
+    third->next = fourth;
+
+    printf("Enter value for the fourth node: ");
+    scanf("%d", &fourth->data);
+    fourth->next = NULL;
+
+    struct Node* slow_ptr = head;
+    struct Node* fast_ptr = head;
+
+    if (head != NULL) {
+        while (fast_ptr != NULL && fast_ptr->next != NULL) {
+            fast_ptr = fast_ptr->next->next;
+            slow_ptr = slow_ptr->next;
+        }
+        printf("The middle element is %d\n", slow_ptr->data);
+    }
+    
+    free(head);
+    free(second);
+    free(third);
+    free(fourth);
+
+    return 0;
+}
