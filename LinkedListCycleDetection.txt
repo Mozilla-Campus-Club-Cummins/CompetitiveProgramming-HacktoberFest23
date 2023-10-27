@@ -1,0 +1,47 @@
+class ListNode {
+    int val;
+    ListNode next;
+
+    ListNode(int val) {
+        this.val = val;
+        this.next = null;
+    }
+}
+
+public class LinkedListCycleDetection {
+    public boolean hasCycle(ListNode head) {
+        if (head == null || head.next == null) {
+            return false; // No cycle if the list is empty or has only one node.
+        }
+
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next; // Move one step at a time.
+            fast = fast.next.next; // Move two steps at a time.
+
+            if (slow == fast) {
+                return true; // If there's a cycle, the two pointers will meet.
+            }
+        }
+
+        return false; // If we reach the end of the list, there's no cycle.
+    }
+
+    public static void main(String[] args) {
+        LinkedListCycleDetection cycleDetection = new LinkedListCycleDetection();
+        ListNode head = new ListNode(3);
+        ListNode node2 = new ListNode(2);
+        ListNode node0 = new ListNode(0);
+        ListNode node4 = new ListNode(4);
+
+        head.next = node2;
+        node2.next = node0;
+        node0.next = node4;
+        node4.next = node2; // Creating a cycle
+
+        boolean hasCycle = cycleDetection.hasCycle(head);
+        System.out.println("Does the linked list have a cycle? " + hasCycle);
+    }
+}
