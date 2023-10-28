@@ -1,0 +1,101 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+struct Node* mergeTwoLists(struct Node* list1, struct Node* list2) {
+    struct Node dummy;
+    struct Node* tail = &dummy;
+    dummy.next = NULL;
+
+    while (1) {
+        if (list1 == NULL) {
+            tail->next = list2;
+            break;
+        } else if (list2 == NULL) {
+            tail->next = list1;
+            break;
+        }
+
+        if (list1->data <= list2->data) {
+            tail->next = list1;
+            list1 = list1->next;
+        } else {
+            tail->next = list2;
+            list2 = list2->next;
+        }
+
+        tail = tail->next;
+    }
+
+    return dummy.next;
+}
+struct Node* mergeKSortedLists(struct Node* lists[], int k) {
+    if (k == 0) return NULL;
+
+    int last = k - 1;
+    while (last != 0) {
+        int i = 0, j = last;
+        while (i < j) {
+            lists[i] = mergeTwoLists(lists[i], lists[j]);
+            i++, j--;
+
+            if (i >= j) last = j;
+        }
+    }
+
+    return lists[0];
+}
+
+// Function to print the merged list
+void printList(struct Node* node) {
+    while (node != NULL) {
+        printf("%d", node->data);
+        if (node->next != NULL)
+            printf("->");
+        node = node->next;
+    }
+    printf("->NULL\n");
+}
+
+int main() {
+    int k, n;
+    printf("Enter the number of linked lists (K): ");
+    scanf("%d", &k);
+    printf("Enter the size of each list (N): ");
+    scanf("%d", &n);
+
+    struct Node* lists[k];
+
+    for (int i = 0; i < k; i++) {
+        printf("list %d: ", i + 1);
+        lists[i] = NULL;
+        struct Node* current = NULL;
+
+        for (int j = 0; j < n; j++) {
+            int value;
+            scanf("%d", &value);
+
+            struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+            newNode->data = value;
+            newNode->next = NULL;
+
+            if (lists[i] == NULL) {
+                lists[i] = newNode;
+                current = newNode;
+            } else {
+                current->next = newNode;
+                current = newNode;
+            }
+        }
+    }
+
+    struct Node* result = mergeKSortedLists(lists, k);
+    printf("Merged Sorted List: ");
+    printList(result);
+
+    return 0;
+}
