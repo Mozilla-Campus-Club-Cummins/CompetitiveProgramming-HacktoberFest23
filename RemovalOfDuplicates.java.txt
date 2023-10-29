@@ -1,0 +1,48 @@
+import java.util.*;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		//Input string from the user
+		System.out.println("Enter the string : ");
+		String str = sc.nextLine();
+		int len = str.length();
+		
+		//Convert str to Char Array
+		char[] charArray = str.toCharArray();
+	
+	    //Declare new char array to store the non-Duplicate characters and initiaize to 0
+		char[] result = new char[len];
+		Arrays.fill(result, '\0');
+		
+		int pos = 0,flag = 0;
+		
+		for(int i = 0; i<len; i++) {
+			flag = 0;
+			
+			for(int j = 0; j<i+1; j++) {
+			    
+			    //Check whether the char is encountered before
+				if (charArray[i] == result[j]) {
+					flag = 1;
+					break;
+				}
+				
+			}
+			
+			//If the char is unique, append it to the result array
+			if  (flag == 0) {
+				result[pos] = charArray[i];
+				pos++;
+			}
+			
+		}
+		
+		//Convert the result array to string and Print it
+		String newStr = new String(result);
+		System.out.println(newStr);
+		
+	}
+	
+}
